@@ -1,0 +1,72 @@
+.dashboard-container {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 16px;
+  font-weight: 500;
+  
+}
+
+h1,
+h2 {
+  color: white;
+  text-align: center;
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+h1 span {
+  background: linear-gradient(270deg, #00FF00 10%, #B415FF 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.form-container,
+.list-container {
+  margin-bottom: 20px;
+}
+
+.button {
+  background: linear-gradient(264deg, #00FF00 -5.09%, #B415FF 106.28%);
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  margin: 5px;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.button:hover {
+  border: 1px solid white;
+
+}
+
+
+.input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  background-color: #00346e;
+  border: .5px solid white;
+  outline: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.input:hover {
+  /* border: 1px solid #B415FF; */
+}
+
+label {
+  font-size: 24px;
+  font-weight: 800;
+  display: block;
+  margin-bottom: 5px;
+  color: white;
+  
+}
+

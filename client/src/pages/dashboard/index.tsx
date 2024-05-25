@@ -1,3 +1,15 @@
+import { useUser } from "@clerk/clerk-react";
+import { RecordForm } from "./record-form";
+import { RecordList } from "./record-list";
+
 export const Dashboard = () => {
-  return <h1> Dashboard </h1>
-}
+
+  const { user } = useUser();
+  return (
+  <div className="dashboard-container">
+    <h1> <span>Welcome {user?.firstName}!</span> Here Are Your Finances:</h1>
+    <RecordForm/>
+    <RecordList/>
+  </div>
+  );
+};
