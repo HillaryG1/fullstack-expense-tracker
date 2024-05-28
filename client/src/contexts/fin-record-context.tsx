@@ -2,7 +2,7 @@ import { useUser } from "@clerk/clerk-react";
 import { createContext, useContext, useEffect, useState } from "react";
 
 export interface FinRecord {
-  id?: string;
+  _id?: string;
   userId: string;
   date: Date;
   description: string;
@@ -14,8 +14,8 @@ export interface FinRecord {
 interface FinRecordsContextType {
   records: FinRecord[];
   addRecord: (record: FinRecord) => void;
-  // updateRecord: (id: string, newRecord: FinRecord) => void;
-  // deleteRecord: (id: string) => void;
+  updateRecord: (id: string, newRecord: FinRecord) => void;
+  deleteRecord: (id: string) => void;
 }
 
 export const FinRecordsContext = createContext<
@@ -60,7 +60,43 @@ export const FinRecordsProvider = ({
     } catch(err) {}
   };
 
-  return (<FinRecordsContext.Provider value={{records, addRecord}}> 
+  const updateRecord = async(id: string, newRecord: FinRecord) => {
+    const response = await fetch(`http://localhost:3001/fin-records/${id}`, {method: "PUT", body: JSON.stringify(newRecord),
+    headers: {
+     "Content-Type": "application/json",
+ 
+    }
+   });
+   try {
+   if (response.ok) {
+     const newRecord = await response.json();
+     setRecords((prev) => prev.map((record) => {
+      if (record._id === id) {
+        return newRecord;
+      } else {
+        return record;
+      }
+
+     }));
+   }
+     } catch(err) {}
+   };
+
+   const deleteRecord = async (id: string) => {
+    const response = await fetch(`http://localhost:3001/fin-records/${id}`, {
+      method: "DELETE", 
+ 
+    }
+   );
+   try {
+   if (response.ok) {
+     const deleteRecord = await response.json();
+     setRecords((prev) => prev.filter((record) => record._id !== deleteRecord._id));
+   }
+     } catch(err) {}
+   }
+
+  return (<FinRecordsContext.Provider value={{records, addRecord, updateRecord, deleteRecord}}> 
     {children} 
   </FinRecordsContext.Provider>
   );

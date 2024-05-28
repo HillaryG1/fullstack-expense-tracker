@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useUser } from "@clerk/clerk-react";
-import './record-form.css'
 import { useFinRecords } from "../../contexts/fin-record-context";
 
 export const RecordForm = () => {

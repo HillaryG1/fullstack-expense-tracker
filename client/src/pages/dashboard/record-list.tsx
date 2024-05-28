@@ -11,10 +11,18 @@ const EditableCell: React.FC<EditableCellProps> = ({value: initialValue, row, co
   const [isEditing, setIsEditing] = useState(false)
   const [value, setValue] = useState(initialValue)
 
+  const onBlur = () => {
+    setIsEditing(false)
+    updateRecord(row.index, column.id, value);
+
+  }
   return ( 
-      <div onClick={() => editable && setIsEditing(true)}> 
+      <div onClick={() => editable && setIsEditing(true)} style={{cursor: editable ? "pointer" : "default"}}> 
         {isEditing ? 
-        <input value={value} onChange={(e) => setValue(e.target.value)} autoFocus style={{width: "100%"}}/> 
+        <input value={value} onChange={(e) => setValue(e.target.value)}
+         autoFocus 
+         onBlur={onBlur}
+        style={{width: "100%"}}/> 
         : `typeof === "string"` 
         ? (value) 
         : (value.toString())}
@@ -25,52 +33,58 @@ const EditableCell: React.FC<EditableCellProps> = ({value: initialValue, row, co
 
 
 export const RecordList = () => {
-const {records} = useFinRecords();
+const {records, updateRecord, deleteRecord } = useFinRecords();
+
+const updateCellRecord = (rowIndex: number, columnId: string, value: any) => {
+  const id = records[rowIndex]?._id;
+  updateRecord(id ?? "", {...records[rowIndex],[columnId]: value });
+}
+
 const columns : Array<Column<FinRecord>> = useMemo(() => [
   {
     Header: "Description",
     accessor: "description",
     Cell: (props) => (
-      <EditableCell {...props} updateRecord={() => null} editable={true}/>
+      <EditableCell {...props} updateRecord={updateCellRecord} editable={true}/>
     ),
   },
   {
     Header: "Amount",
     accessor: "amount",
     Cell: (props) => (
-      <EditableCell {...props} updateRecord={() => null} editable={true}/>
+      <EditableCell {...props} updateRecord={updateCellRecord} editable={true}/>
     ),
   },
   {
     Header: "Category",
     accessor: "category",
     Cell: (props) => (
-      <EditableCell {...props} updateRecord={() => null} editable={true}/>
+      <EditableCell {...props} updateRecord={updateCellRecord} editable={true}/>
     ),
   },
   {
     Header: "Payment Method",
     accessor: "paymentMethod",
     Cell: (props) => (
-      <EditableCell {...props} updateRecord={() => null} editable={true}/>
+      <EditableCell {...props} updateRecord={updateCellRecord} editable={true}/>
     ),
   },
   {
     Header: "Date",
     accessor: "date",
     Cell: (props) => (
-      <EditableCell {...props} updateRecord={() => null} editable={false}/>
+      <EditableCell {...props} updateRecord={updateCellRecord} editable={false}/>
     ),
   },
   {
-    Header: "Dlete",
+    Header: "Delete",
     id: "delete",
-    Cell: (row) => (
-      <button onClick={() => null} className="button">Delete</button>
+    Cell: ({row}) => (
+      <button onClick={() => deleteRecord (row.original._id ?? "")} className="button">Delete</button>
     ),
   },
 
-], []
+], [records]
 );
 
 

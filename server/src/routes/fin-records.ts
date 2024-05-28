@@ -28,7 +28,7 @@ router.post('/', async (req: Request, res: Response) => {
   }
 });
 
-router.put('/id:', async (req: Request, res: Response) => {
+router.put('/:id', async (req: Request, res: Response) => {
   try {
     const id = req.params.id;
     const newRecordBody = req.body;
@@ -46,7 +46,7 @@ router.put('/id:', async (req: Request, res: Response) => {
   }
 });
 
-router.delete('/id:', async (req: Request, res: Response) => {
+router.delete('/:id', async (req: Request, res: Response) => {
   try {
     const id = req.params.id;
     const record = await FinRecordModel.findByIdAndDelete(id);
