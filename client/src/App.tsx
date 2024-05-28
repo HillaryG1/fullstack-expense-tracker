@@ -1,13 +1,22 @@
 import './App.css'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import { Dashboard } from './pages/dashboard';
 import { Auth } from './pages/auth';
 import { FinRecordsProvider } from './contexts/fin-record-context';
+import { SignedIn, UserButton } from '@clerk/clerk-react';
+
 
 function App() {
   return (
     <Router> 
       <div className='app-container'>
+        <div className="navbar">
+          <Link to="/">Dashboard</Link>
+          <SignedIn>
+      <UserButton showName/>
+    </SignedIn>
+
+        </div>
       <Routes>
         <Route path='/' element={<FinRecordsProvider><Dashboard/></FinRecordsProvider>}/>
         <Route path='auth' element={<Auth/>}/>
