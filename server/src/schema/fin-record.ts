@@ -10,7 +10,7 @@ interface FinRecord {
 }
 
 const finRecordSchema = new mongoose.Schema<FinRecord>({
-userId: { tupe: String, required: true },
+userId: { type: String, required: true },
 date: { type: Date, required: true },
 description: { type: String, required: true },
 amount: { type: Number, required: true },

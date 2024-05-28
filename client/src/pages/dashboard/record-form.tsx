@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { useUser } from "@clerk/clerk-react";
 import './record-form.css'
+import { useFinRecords } from "../../contexts/fin-record-context";
 
 export const RecordForm = () => {
   // State variables for form fields
   const [description, setDescription] = useState<string>("");
   const [amount, setAmount] = useState<string>("");
+
   const [category, setCategory] = useState<string>("");
   const [paymentMethod, setPaymentMethod] = useState<string>("");
+  const {addRecord} = useFinRecords();
   // Clerk's useUser hook for accessing the user
   const {user} = useUser()
   // Handle form submission
@@ -15,7 +18,7 @@ export const RecordForm = () => {
     event.preventDefault();
 
     const newRecord = {
-      userId: user?.id,
+      userId: user?.id?? "",
       date: new Date(),
       description: description,
       amount: parseFloat(amount),
@@ -23,7 +26,7 @@ export const RecordForm = () => {
       paymentMethod: paymentMethod,
     };
 
-    // addRecord(newRecord)
+    addRecord(newRecord)
     // Reset form fields to initial state
     setDescription("");
     setAmount("");
