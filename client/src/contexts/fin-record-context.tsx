@@ -1,6 +1,7 @@
-import { createContext, useContext, useState } from "react";
+import { useUser } from "@clerk/clerk-react";
+import { createContext, useContext, useEffect, useState } from "react";
 
-interface FinRecord {
+export interface FinRecord {
   id?: string;
   userId: string;
   date: Date;
@@ -27,6 +28,22 @@ export const FinRecordsProvider = ({
   children: React.ReactNode;
 }) => {
   const [records, setRecords] = useState<FinRecord[]>([]);
+  const { user } = useUser()
+
+  const fetchRecords = async () => {
+    if (!user) return;
+    const response = await fetch(`http://localhost:3001/fin-records/getAllByUserID/${user?.id}`);
+
+    if (response.ok) {
+      const records = await response.json();
+      setRecords(records);
+    }
+
+  };
+
+    useEffect(() => {
+      fetchRecords()
+    }, [user]);
 
   const addRecord = async(record: FinRecord) => {
    const response = await fetch("http://localhost:3001/fin-records", {method: "POST", body: JSON.stringify(record),
