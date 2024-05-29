@@ -22,7 +22,7 @@ const EditableCell: React.FC<EditableCellProps> = ({value: initialValue, row, co
         <input value={value} onChange={(e) => setValue(e.target.value)}
          autoFocus 
          onBlur={onBlur}
-        style={{width: "100%"}}/> 
+        className="input"/> 
         : `typeof === "string"` 
         ? (value) 
         : (value.toString())}
@@ -80,7 +80,7 @@ const columns : Array<Column<FinRecord>> = useMemo(() => [
     Header: "Delete",
     id: "delete",
     Cell: ({row}) => (
-      <button onClick={() => deleteRecord (row.original._id ?? "")} className="button">Delete</button>
+      <button onClick={() => deleteRecord (row.original._id ?? "")} className="button-delete">Delete</button>
     ),
   },
 

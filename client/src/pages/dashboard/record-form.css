@@ -9,14 +9,14 @@
 
 h1,
 h2 {
-  color: #c9c7c4;
+  color: white ;
   text-align: center;
   font-size: 3.2em;
   line-height: 1.1;
 }
 
 h1 span {
-  background: linear-gradient(264deg, #05eb87 -5.09%, #0156c6 106.28%);
+  background: linear-gradient(264deg, #00FF00 -5.09%, #B415FF 106.28%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -28,8 +28,8 @@ h1 span {
 }
 
 .button {
-  background: linear-gradient(264deg, #05eb87 -5.09%, #0156c6 106.28%);
-  color: black;
+  background:  linear-gradient(264deg, #00FF00 -5.09%, #B415FF 106.28%);
+  color: white;
   font-size: 16px;
   font-weight: 600;
   border: none;
@@ -37,6 +37,22 @@ h1 span {
   margin: 5px;
   border-radius: 50px;
   cursor: pointer;
+}
+
+.button-delete {
+  background: purple;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  padding: 8px 15px;
+  margin: 5px;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.button-delete:hover {
+  border: 2px solid white;
 }
 
 .button:hover {
@@ -50,18 +66,18 @@ h1 span {
   padding: 10px;
   margin-top: 5px;
   margin-bottom: 15px;
-  background: #003344;
+  background: #4B0082;
   border: none;
   outline: none;
   border-radius: 10px;
-  color: #dbd8d3;
+  color: white;
   font-size: 18px;
-  font-weight: 500;
+  font-weight: 600;
   
 }
 
 .input:hover {
-  /* border: 1px solid #B415FF; */
+  border: 1px solid white;
 }
 
 label {
@@ -69,6 +85,62 @@ label {
   font-weight: 800;
   display: block;
   margin-bottom: 5px;
-  color: #c9c7c4;
+  color: white;
 }
 
+.table-container {
+  margin: 20px;
+  overflow-x: auto; 
+}
+
+.table-container .input {
+  
+  width: 80%; 
+  padding: 8px;
+  
+  background: #ffffff; 
+  border-radius: 10px;
+  color: black;
+  font-size: 14px; 
+}
+
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+
+}
+
+.table th,
+.table td {
+  padding: 5px 10px;
+  border: .5px solid #ddd; 
+  text-align: left;
+  color: black;
+  font-size: 16;
+  font-weight: 500;
+  
+}
+
+.table th {
+  background:  linear-gradient(264deg, #00FF00 -5.09%, gray
+  106.28%); 
+  color: black;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.table tbody tr:nth-child(odd) {
+  background:  linear-gradient(264deg, #00FF00 -5.09%, purple
+  106.28%); 
+}
+.table tbody {
+  background: linear-gradient(264deg, #00FF00 -5.09%, purple
+  106.28%);
+}
+
+.table tbody tr:hover {
+  border: 1px solid white;
+  
+}
