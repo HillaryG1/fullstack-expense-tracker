@@ -1,4 +1,4 @@
-# Full Stack Financial Records App
+# Full Stack Expense Tracker
 
 A full-stack web application for managing financial records, built with React, Express, and MongoDB.
 
